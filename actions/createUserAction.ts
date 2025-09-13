@@ -1,6 +1,7 @@
 'use server'
 import { userRegisterSchema } from '@/src/conexion-prisma/schema-zod'
 import { prisma } from '../src/conexion-prisma/prisma'
+import bcrypt from 'bcrypt'
 
 export async function createUser(data:unknown) {
     const result = userRegisterSchema.safeParse(data)
@@ -9,13 +10,25 @@ export async function createUser(data:unknown) {
     }
 
     try {
+        // Check if user Exists
+        const userExists = await prisma.user.findFirst({
+            where: {
+                email: result.data.email
+            }
+        })
+        if(userExists) {
+            return {errors: [{message: 'This Email already exists'}]}
+        } 
+
         // we have to hash the password first before to save it
+        const passwordHashed = await bcrypt.hash(result.data.password, 10)
+
         // Create the new user
-        await prisma.User.create({
+        await prisma.user.create({
             data: {
                 name: result.data.name,
                 email: result.data.email,
-                password: result.data.password,
+                password: passwordHashed,
             }
         })
     } catch (error) {

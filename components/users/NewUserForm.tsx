@@ -36,7 +36,7 @@ export default function NewUserForm({children}:{children: React.ReactNode}) {
          return
       }
 
-      toast.success('User Created Correctly')
+      toast.success('User Created Correctly, you can log in')
       router.push('/')
    }
 
@@ -56,6 +56,17 @@ export default function NewUserForm({children}:{children: React.ReactNode}) {
                className='flex flex-col items-center mt-10 gap-5 w-full'
             >
               {children}
+
+            <div>
+                <p className="text-lg text-center transition-all">
+                    ¿Ya tienes una cuenta?
+                    <Link href={'/'}><span className="text-indigo-800 hover:text-indigo-900 font-bold"> Inicia Sesión</span></Link>
+                </p>
+                <p className="text-lg text-center transition-all">
+                    ¿Olvidaste tu contraseña?
+                    <Link href={'/recover-password'}><span className="text-indigo-800 hover:text-indigo-900 transition-all font-bold"> Recupera tu cuenta</span></Link>
+                </p>
+            </div>
             </form>
          </div>
       </div>

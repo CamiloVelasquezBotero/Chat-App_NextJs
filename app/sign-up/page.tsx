@@ -6,7 +6,7 @@ export default function CreateUser() {
   return (
    <>
       <NewUserForm>
-         <UserForm />
+         <UserForm condition={'sign up'}/>
       </NewUserForm>
    </>
   )
