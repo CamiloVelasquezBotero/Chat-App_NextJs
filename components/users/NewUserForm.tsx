@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { userRegisterSchema } from '@/src/conexion-prisma/schema-zod'
+import { userRegisterSchema } from '@/src/schema-zod'
 import { toast } from 'react-toastify'
 import { createUser } from '@/actions/createUserAction'
 
@@ -9,6 +9,7 @@ export default function NewUserForm({children}:{children: React.ReactNode}) {
    const router = useRouter()
 
    const handleSubmit = async (formData:FormData) => {
+      
       if(formData.get('password') !== formData.get('confirmPas')) {
          toast.error('The passwords are incorrect')
          return

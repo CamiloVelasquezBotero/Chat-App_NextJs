@@ -17,6 +17,7 @@ export default function UserForm({condition}:UserFormProps) {
                 <div className='flex gap-5 items-center w-full justify-center'>
                     <label htmlFor="name" className='font-black text-4xl ml-19 text-shadow-lg'>Name</label>
                     <input
+                        id="name"
                         type="name"
                         name='name'
                         className='outline-none shadow-xl border border-slate-200 transition-all p-2 rounded-lg w-100'
@@ -27,6 +28,7 @@ export default function UserForm({condition}:UserFormProps) {
             <div className='flex gap-5 items-center w-full justify-center'>
                 <label htmlFor="email" className='font-black text-4xl ml-19 text-shadow-lg'>Email</label>
                 <input
+                    id="email"
                     type="email"
                     name='email'
                     className='outline-none shadow-xl border border-slate-200 transition-all p-2 rounded-lg w-100'
@@ -36,6 +38,7 @@ export default function UserForm({condition}:UserFormProps) {
             <div className='flex gap-5 items-center w-full justify-center'>
                 <label htmlFor="password" className='font-black text-4xl text-shadow-lg'>Password</label>
                 <input
+                    id="password"
                     type="password"
                     name='password'
                     className='outline-none shadow-xl border border-slate-200 transition-all p-2 rounded-lg w-100'
@@ -46,6 +49,7 @@ export default function UserForm({condition}:UserFormProps) {
                 <div className='flex gap-5 items-center w-full justify-center'>
                     <label htmlFor="confirmPas" className='font-black text-4xl ml-7 text-shadow-lg'>Confirm</label>
                     <input
+                        id="confirmPas"
                         type="password"
                         name='confirmPas'
                         className='outline-none shadow-xl border border-slate-200 transition-all p-2 rounded-lg w-100'

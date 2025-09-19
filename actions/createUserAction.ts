@@ -1,5 +1,5 @@
 'use server'
-import { userRegisterSchema } from '@/src/conexion-prisma/schema-zod'
+import { userRegisterSchema } from '@/src/schema-zod'
 import { prisma } from '../src/conexion-prisma/prisma'
 import bcrypt from 'bcrypt'
 

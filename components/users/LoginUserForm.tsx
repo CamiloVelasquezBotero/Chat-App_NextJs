@@ -1,19 +1,34 @@
 'use client'
-import { loginUser } from "@/actions/loginUserAction";
-import { userLoginSchema } from "@/src/conexion-prisma/schema-zod";
 import Link from "next/link";
+import { loginUser } from "@/actions/loginUserAction";
+import { userLoginSchema } from "@/src/schema-zod";
 import { toast } from "react-toastify";
+import { useStore } from "@/src/store";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export default function LoginUserForm({children}:{children: React.ReactNode}) {
+export default function LoginUserForm({ children }: { children: React.ReactNode }) {
+   const setToken = useStore((state) => state.setToken)
+   const token = useStore((state) => state.token)
 
-   const handleSubmit = async (formData:FormData) => {
+   const router = useRouter()
+
+   // Comprobamos Sesion abierta
+   useEffect(() => {
+      const tokenStorage = localStorage.getItem('token')
+      if(!tokenStorage) return 
+         setToken(tokenStorage)
+         router.push('/dashboard')
+   }, [token])
+
+   const handleSubmit = async (formData: FormData) => {
       const data = {
          email: formData.get('email'),
          password: formData.get('password'),
       }
       // Validate in the client
       const result = userLoginSchema.safeParse(data)
-      if(!result.success) {
+      if (!result.success) {
          result.error.issues.forEach(issue => (
             toast.error(issue.message)
          ))
@@ -22,7 +37,16 @@ export default function LoginUserForm({children}:{children: React.ReactNode}) {
 
       // validate in the server
       const response = await loginUser(result.data)
-      console.log(response)
+      if (response?.errors) {
+         response.errors.forEach(issue => {
+            toast.error(issue.message)
+         })
+      }
+      // get the user and log in
+      if (response?.token) {
+         setToken(response.token)
+         router.push('/dashboard')
+      }
    }
 
    return (
@@ -41,7 +65,7 @@ export default function LoginUserForm({children}:{children: React.ReactNode}) {
                   action={handleSubmit}
                   className='flex flex-col items-center mt-10 gap-5'
                >
-                  
+
                   {children}
 
                   <div>

@@ -15,7 +15,7 @@ export default function DropDownMenu() {
   return (
     <div className="">
       <Menu>
-        <MenuButton className="inline-flex items-center gap-2 rounded-md bg-gray-800 px-3 py-2 text-sm/6 font-semibold text-white shadow-xl border-slate-700 shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-700 data-open:bg-gray-700 cursor-pointer">
+        <MenuButton className="inline-flex items-center gap-2 rounded-md bg-gray-800 px-3 py-2 text-sm/6 font-semibold text-white shadow-xl border-slate-700 shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-700 data-open:bg-gray-700 cursor-pointer transition-all">
           <Image
             src={'/profile.jpg'}
             alt="Profile Picture"
@@ -32,21 +32,21 @@ export default function DropDownMenu() {
         >
           <div className="my-1 h-px bg-white/5" />
           <MenuItem>
-            <button className="group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-white/10 cursor-pointer">
+            <button className="transition group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-white/10 cursor-pointer">
               <PencilSquareIcon className="size-6 fill-white/30" />
               Edit Profile
               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-focus:inline"></kbd>
             </button>
           </MenuItem>
           <MenuItem>
-            <button className="group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-white/10 cursor-pointer">
+            <button className="transition group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-white/10 cursor-pointer">
               <AdjustmentsHorizontalIcon className="size-6 fill-white/30" />
               Change Color
               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-focus:inline"></kbd>
             </button>
           </MenuItem>
           <MenuItem>
-            <button className="group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-white/10 cursor-pointer">
+            <button className="transition group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-white/10 cursor-pointer">
               <ArrowLeftEndOnRectangleIcon className="size-6 fill-white/30" />
               Log Out
               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-focus:inline"></kbd>

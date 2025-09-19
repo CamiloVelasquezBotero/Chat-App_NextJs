@@ -1,6 +1,8 @@
+'use server'
 import { prisma } from "@/src/conexion-prisma/prisma";
-import { userLoginSchema } from "@/src/conexion-prisma/schema-zod";
+import { userLoginSchema } from "@/src/schema-zod";
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 export async function loginUser(data: unknown) {
     const result = userLoginSchema.safeParse(data)
@@ -10,12 +12,37 @@ export async function loginUser(data: unknown) {
 
     try {
         // Check if user Exists
-        const userExists = await prisma.user.findMany({
+        const userExists = await prisma.user.findFirst({
             where: {
                 email: result.data.email
             }
         })
-        console.log(userExists)
+        if(!userExists) {
+            return {errors: [{message: 'This Email is not registered'}]}
+        }
+
+        // Check password
+        const passwordMatch = await bcrypt.compare(result.data.password, userExists.password)
+        if(!passwordMatch) {
+            return {errors: [{message: 'The password is incorrect'}]}
+        }
+
+        // Create JWT to save the user
+        const token = jwt.sign(
+            {
+                id:userExists.id, name:userExists.name, email:userExists.email
+            }, 
+            process.env.SECRET_KEY!, 
+            {expiresIn: '30d'}
+        )
+        // Datos de usuario
+        const dataUser = {
+            name: userExists.name,
+            email: userExists.email
+        }
+
+        // Return the user
+        return {token, dataUser}
     } catch (error) {
         console.log('There was an error when try to log in', error)
     }

@@ -1,10 +1,11 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { LightBulbIcon, PlusCircleIcon } from '@heroicons/react/16/solid'
 import Link from "next/link";
 import OnlineUsers from "@/components/OnlineUsers";
+import { useStore } from "@/src/store";
 
 export default function DashBoard() {
   const [isChatOpen, setIsChatOpen] = useState(false)
