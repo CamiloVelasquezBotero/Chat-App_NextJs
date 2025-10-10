@@ -10,8 +10,11 @@ import {
   TrashIcon,
 } from '@heroicons/react/16/solid'
 import Image from 'next/image'
+import { useStore } from '@/src/store'
 
 export default function DropDownMenu() {
+  const logOut = useStore((state) => state.logOut)
+
   return (
     <div className="">
       <Menu>
@@ -46,7 +49,10 @@ export default function DropDownMenu() {
             </button>
           </MenuItem>
           <MenuItem>
-            <button className="transition group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-white/10 cursor-pointer">
+            <button 
+              className="transition group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-white/10 cursor-pointer"
+              onClick={logOut}
+            >
               <ArrowLeftEndOnRectangleIcon className="size-6 fill-white/30" />
               Log Out
               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-focus:inline"></kbd>

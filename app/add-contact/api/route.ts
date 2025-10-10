@@ -1,4 +1,4 @@
-import { prisma } from "@/src/conexion-prisma/prisma";
+import { prisma } from "@/src/prisma-connection/prisma";
 
 // FIND CONTACTS FOR SEARCHING
 export async function GET(req:Request) {

@@ -1,5 +1,5 @@
 'use server'
-import { prisma } from "@/src/conexion-prisma/prisma";
+import { prisma } from "@/src/prisma-connection/prisma";
 import { userLoginSchema } from "@/src/schema-zod";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'

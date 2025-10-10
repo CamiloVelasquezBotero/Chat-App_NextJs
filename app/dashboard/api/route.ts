@@ -1,4 +1,4 @@
-import { prisma } from '@/src/conexion-prisma/prisma';
+import { prisma } from '@/src/prisma-connection/prisma';
 import jwt from 'jsonwebtoken'
 
 // GET USER REGISTERED
@@ -29,7 +29,4 @@ export async function GET(req:Request) {
         console.log('There was an error validating the Token', error)
         return Response.json({error: 'Invalid Token'}, {status: 401})
     }
-
-
-    return Response.json('Hola')
 }

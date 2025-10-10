@@ -11,7 +11,9 @@ export default function DashBoard() {
   const [isChatOpen, setIsChatOpen] = useState(false)
   const router = useRouter()
 
-  return (
+  const userData = useStore((state) => state.userData)
+
+  if(userData.email) return (
     <>
       <div className="grid grid-cols-2">
         <div className="flex flex-col w-full">

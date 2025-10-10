@@ -1,6 +1,6 @@
 'use server'
 import { userRegisterSchema } from '@/src/schema-zod'
-import { prisma } from '../src/conexion-prisma/prisma'
+import { prisma } from '../src/prisma-connection/prisma'
 import bcrypt from 'bcrypt'
 
 export async function createUser(data:unknown) {

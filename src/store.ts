@@ -3,20 +3,26 @@ import { UserData } from './types'
 import api from './lib/axios'
 import { userDataSchema, userLoginSchema } from './schema-zod'
 
+const initialValues = {
+    token: '',
+    userData: {
+        name: '',
+        email: ''
+    }
+}
+
 interface Store {
     token: string
     userData: UserData,
 
     setToken: (token:string) => void,
-    getUserData: () => void
+    getUserData: () => void,
+    logOut: () => void
 }
 
 export const useStore = create<Store>((set, get) => ({
-    token: '',
-    userData: {
-        name: '',
-        email: ''
-    },
+    token: initialValues.token,
+    userData: initialValues.userData,
 
     setToken: (token) => {
         set(() => ({
@@ -41,5 +47,13 @@ export const useStore = create<Store>((set, get) => ({
         } catch (error) {
             console.log('There was an error getting user Data', error)
         }
+    },
+
+    logOut: () => {
+        localStorage.removeItem('token')
+        set(() => ({
+            token: initialValues.token,
+            userData: initialValues.userData
+        }))
     }
 }))
