@@ -24,6 +24,17 @@ export const userLoginSchema = userRegisterSchema.pick({
 export const userDataSchema = userRegisterSchema.pick({
   email: true,
   name: true
+}).extend({
+  id: z.number()
 })
 
-export const usersFoundInSearch = z.array(userDataSchema)
+export const usersDataSchema = z.array(userDataSchema)
+
+export const userIdSchema = z.object({
+  id: z.int()
+})
+
+export const dataSendRequest = z.object({
+  userId: z.int(),
+  userDataId: z.int(),
+})

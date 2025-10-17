@@ -17,6 +17,7 @@ export async function GET(req:Request) {
                     id: decoded.id
                 },
                 select:{
+                    id: true,
                     name:true,
                     email:true,
                 }

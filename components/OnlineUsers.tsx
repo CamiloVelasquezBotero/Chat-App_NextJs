@@ -5,7 +5,7 @@ import { LightBulbIcon } from '@heroicons/react/16/solid'
 export default function OnlineUsers() {
     return (
         <div>
-            <ul className="flex gap-2 flex-col items-center px-auto bg-white w-100 h-100 rounded-xl m-auto mt-10 overflow-y-auto" >
+            <ul className="flex gap-2 flex-col items-center px-auto bg-white w-100 h-100 rounded-xl m-auto mt-10 overflow-y-auto shadow-md" >
                 <h2 className="font-black text-center mt-5 text-2xl gap-2 mb-5">Tus Contactos Conectados</h2>
                 <li className="w-fit p-2 bg-slate-300 rounded-full">
                     <div className="flex gap-5 items-center">

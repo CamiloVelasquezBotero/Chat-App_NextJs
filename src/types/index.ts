@@ -1,7 +1,9 @@
 import { User } from "@prisma/client";
 import z from "zod";
-import { usersFoundInSearch } from "../schema-zod";
+import { dataSendRequest, usersDataSchema } from "../schema-zod";
 
-export type UserData = Pick<User, 'name' | 'email'>
+export type UserData = Pick<User, 'id' | 'name' | 'email'>
 
-export type UsersFoundInSearch = z.infer<typeof usersFoundInSearch>
+export type UsersDataSchema = z.infer<typeof usersDataSchema>
+
+export type UserId = z.infer<typeof dataSendRequest>

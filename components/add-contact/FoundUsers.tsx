@@ -1,16 +1,16 @@
-import { UsersFoundInSearch } from "@/src/types"
+import { UserData, UsersDataSchema } from "@/src/types"
 import User from "./User"
 
 type FoundUsersProps = {
-  users: UsersFoundInSearch
+  users: UsersDataSchema
 }
 
 export default function FoundUsers({users}:FoundUsersProps) {
   return (
     <>
         {users.length ? (
-          <ul className="flex flex-col gap-">
-            {users.map(user => (
+          <ul className="flex flex-col gap-1 h-95 overflow-y-scroll p-1 shadow-xl">
+            {users.map((user:UserData) => (
                 <User
                   key={user.email}
                   user={user}

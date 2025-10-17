@@ -20,5 +20,4 @@ export async function GET(req:Request) {
     } catch (error) {
         console.log('There was an error finding users... ', error)
     }
-    
 }

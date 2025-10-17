@@ -6,6 +6,7 @@ import { userDataSchema, userLoginSchema } from './schema-zod'
 const initialValues = {
     token: '',
     userData: {
+        id: 0,
         name: '',
         email: ''
     }
@@ -14,7 +15,7 @@ const initialValues = {
 interface Store {
     token: string
     userData: UserData,
-
+    
     setToken: (token:string) => void,
     getUserData: () => void,
     logOut: () => void
@@ -39,6 +40,7 @@ export const useStore = create<Store>((set, get) => ({
             if(result.success) {
                 set(() => ({
                     userData: {
+                        id: result.data.id,
                         name: result.data.name,
                         email: result.data.email,
                     }
